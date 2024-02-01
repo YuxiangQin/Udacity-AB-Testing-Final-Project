@@ -18,16 +18,16 @@ Any place "unique cookies" are mentioned, the uniqueness is determined by day. (
 ### Invariant Metrics
 As screener triggers after click "Start free trial", we should expect cookies are evenly distributed in prior stages, and behaviors are the same between two groups. Therefore, below three metrcs are selected as invariant metrics.
 
-- Number of cookies: That is, number of unique cookies to view the course overview page. (dmin=3000)
-- Number of clicks: That is, number of unique cookies to click the "Start free trial" button (which happens before the free trial screener is trigger). (dmin=240)
+- **Number of cookies**: That is, number of unique cookies to view the course overview page. (dmin=3000)
+- **Number of clicks**: That is, number of unique cookies to click the "Start free trial" button (which happens before the free trial screener is trigger). (dmin=240)
 - Click-through-probability: That is, number of unique cookies to click the "Start free trial" button divided by number of unique cookies to view the course overview page. (dmin=0.01)  
 
 ### Evaluation Metrics
 Under the hypothesis, if the screener feature act as expected, we should observe test group has lower `Gross conversion` as the screener filtered out students don't have enough time for free trial. On the other hand we should observe test group has higher `Retention` as students who decided to proceed with free trial already awared of the time requested. In terms of `Net conversion`, we should observe that test group has equal/higher rate than control group. 
 
-- Gross conversion: That is, number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button. (dmin= 0.01)
-- Retention: That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout. (dmin=0.01)
-- Net conversion: That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the "Start free trial" button. (dmin= 0.0075)  
+- **Gross conversion**: That is, number of user-ids to complete checkout and enroll in the free trial divided by number of unique cookies to click the "Start free trial" button. (dmin= 0.01)
+- **Retention**: That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout. (dmin=0.01)
+- **Net conversion**: That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the "Start free trial" button. (dmin= 0.0075)  
 
 ## Measuring Standard Deviation
 Since the unit of diversion is the same as the unit of analysis (denominator of the metric formula) for each evaluation metric (cookie in the case of Gross Conversion and Net Conversion and user-id in the case of Retention) and we can make assumptions about the distributions of the metrics (binominal), we can calculate the standard errors analytically (instead of empirically).
@@ -57,8 +57,8 @@ Use an alpha of 0.05 and a beta of 0.2, the number of pageviews total (across bo
 
 | Evaluation Metric | Unit of Analysis | Estimator | dmin | Sample Size (cookies) |
 |----------|----------|----------|----------|----------|
-| Gross Conversion | Clicks | 0.206250 | -0.0100 | 630725 |
-| Retention	| User-ids | 0.530000 | 0.0100 | 4733091 |
+| Gross Conversion | Clicks | 0.206250 | -0.01 | 630725 |
+| Retention	| User-ids | 0.530000 | 0.01 | 4733091 |
 | Net conversion | Clicks | 0.109313 | 0.0075 | 699525 |
 
 As we want to test all three metrics, sample sized needed is the maximum of the three, which is 4,733,091 cookies. 
@@ -83,10 +83,11 @@ Here all three invariant metrics passed sanity check.
 #### Effect Size Tests
 From result data, we can see enrollment and payment columns only available for 23 days, versus pageview and clicks available for all 37 days.  
 In this case, the true sample size is 423,525, which is lower than 699,525 we were targeting. But without other data points, we'll proceed the analysis base on 23 days' data.   
+From below table we can see that `Gross Conversion` is both statistical and practial significant, while `Net Conversion` is not significant in both tests.
 
 | Evaluation Metric | Control | Experiment | CI_lower | CI_upper | obs     | dmin | stats_significant | practical_significant |
 |-----------|------------|----------|----------|---------|-------------------|-------------------|---------|---------|
-| Gross Conversion | 0.218875 | 0.198320 | -0.008568 | 0.008568 | -0.020555 | -0.0100 | Y | Y |
-| Net Conversion   | 0.117562 | 0.112688 | -0.006731 | 0.006731 | -0.004874 |  0.0075 | N | N |
+| Gross Conversion | 0.2189 | 0.1983 | -0.0086 | 0.0086 | -0.0206 | -0.01 | Y | Y |
+| Net Conversion   | 0.1176 | 0.1127 | -0.0067 | 0.0067 | -0.0049 |  0.0075 | N | N |
 
 
