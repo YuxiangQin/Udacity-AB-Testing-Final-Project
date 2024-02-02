@@ -90,4 +90,37 @@ From below table we can see that `Gross Conversion` is both statistical and prac
 | Gross Conversion | 0.2189 | 0.1983 | -0.0086 | 0.0086 | -0.0206 | -0.01 | Y | Y |
 | Net Conversion   | 0.1176 | 0.1127 | -0.0067 | 0.0067 | -0.0049 |  0.0075 | N | N |
 
+#### Sign Tests
+Day-by-day sign test p-value was calculated using [this online calculator](https://www.graphpad.com/quickcalcs/binomial1.cfm).  
+Days with positive change:
+- Gross Conversion: days that experiment group has lower gross conversion rate than control group.
+- Net Conversion: days that experiment group has higher net conversion rate than control group.
+
+| Evaluation Metric | # of Days | # of Days with positive change | p-value for sign test | statistically significant at alpha=.05 |
+|-------------------|-----------|--------------------------------|-----------------------|----------------------------------------|
+| Gross Conversion | 23 | 19 | 0.0026 | Y |
+| Net Conversion   | 23 | 13 | 0.6776 | N |
+
+#### Summary
+The Bonferroni correction has not been incorporated into this analysis. Typically used to mitigate Type I errors when examining multiple metrics and to prevent the incorrect rejection of null hypotheses in the event of rare statistical significance.  
+In this experiment, all evaluations must not only be statistically significant but also practically significant to warrant recommendations. Therefore, the Bonferroni correction is intentionally omitted.
+
+Furthermore, it is noteworthy that the results from both the effect size test and the sign test align in terms of statistical significance.
+
+### Recommendation
+From what we observed, experiment group has practially significant lower `Gross Conversion` than control group, and we can't conclude statistical or practical significance in `Net Conversion` between two groups.  
+This aligns with the hypothesis that reducing the number of frustrated students who left the free trial because they didn't have enough time, without significantly reducing the number of students to continue past the free trial and eventually complete the course.  
+So the recommendation would be launch the feature.
+
+## Follow-Up Experiment - How to Reduce Early Cancellations
+Here, we define "Early Cancellation" as students who enrolled 14 days free trial but didn't make the payment of the course. There're two phase might impact students' decision:
+1. Pre-enrollment: where students might didn't set up corrcet expectation before enrollment, then left frustrated during free trail period. 
+2. Post-enrollment and pre-payment: where we assume students already have right expectation, but still dropped, there're various potential reasons such as less engagement, poor course quality, financial difficulty, etc.
+
+The experiment above already focused on one point for pre-enrollment, we'll discuss a potential follow-up experiment in post-enrollment and pre-payment period. Main difference between paid version and free version of course is project feedback, which would motivate students to keep learning and feel accomplished. I suggest to add notifications in free trail asking students submit at leat one project, in that case if they did submit one, they'll have chance to experience of practicing skills and getting feedbacks.  
+**Setup**: We'll randomly split students who enrolled in free trail into two groups, send project notification to experiment group, and keep everything the same for control group.     
+**Null Hypothesis**: Project notification will not increase the number of students enrolled beyond the 14 day free trial period by a significant amount.  
+**Invariant Metrics**: Number of user-ids  
+**Evaluation Metrics**: Rentention, a statistically and practically significant increase in Retention would indicate that the change is succesful.  
+If a statistically and practically signifcant positive change in Retention is observed, assuming an acceptable impact on overall Udacity resources (on sending out the notifications), the experiment will be launched.
 
