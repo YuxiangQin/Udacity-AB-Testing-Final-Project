@@ -118,9 +118,14 @@ Here, we define "Early Cancellation" as students who enrolled 14 days free trial
 2. Post-enrollment and pre-payment: where we assume students already have right expectation, but still dropped, there're various potential reasons such as less engagement, poor course quality, financial difficulty, etc.
 
 The experiment above already focused on one point for pre-enrollment, we'll discuss a potential follow-up experiment in post-enrollment and pre-payment period. Main difference between paid version and free version of course is project feedback, which would motivate students to keep learning and feel accomplished. I suggest to add notifications in free trail asking students submit at leat one project, in that case if they did submit one, they'll have chance to experience of practicing skills and getting feedbacks.  
-**Setup**: We'll randomly split students who enrolled in free trail into two groups, send project notification to experiment group, and keep everything the same for control group.     
+  
+**Setup**: We'll randomly split students who enrolled in free trail into two groups, send project notification to experiment group, and keep everything the same for control group.  
+     
 **Null Hypothesis**: Project notification will not increase the number of students enrolled beyond the 14 day free trial period by a significant amount.  
-**Invariant Metrics**: Number of user-ids  
+  
+**Invariant Metrics**: Number of user-ids 
+   
 **Evaluation Metrics**: Rentention, a statistically and practically significant increase in Retention would indicate that the change is succesful.  
+  
 If a statistically and practically signifcant positive change in Retention is observed, assuming an acceptable impact on overall Udacity resources (on sending out the notifications), the experiment will be launched.
 
